@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Allow only user customization files
+!.gitignore
+!profiles.ini
+!custom_profile/
+!custom_profile/user.js
+!custom_profile/prefs.js
+!custom_profile/chrome/**
