@@ -8,10 +8,34 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+lvim.builtin.dap.active = true
+local dap = require("dap")
+dap.adapters.codelldb = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = "/home/raul/.local/share/nvim/mason/bin/codelldb",
+		args = { "--port", "${port}" },
+	},
+}
+
+dap.configurations.cpp = {
+	{
+		name = "Launch file",
+		type = "codelldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+	},
+}
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
--- lvim.colorscheme = "darkplus"
+lvim.colorscheme = "darkplus"
 -- lvim.colorscheme = "dracula"
 lvim.transparent_window = false
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -21,21 +45,59 @@ vim.opt.expandtab = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+-- Set neovide options
+vim.g.neovide_fullscreen = false
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_scroll_animation_length = 0.3
+vim.g.neovide_cursor_animation_length = 0.1
+vim.g.neovide_cursor_trail_size = 0.5
+vim.g.neovide_refresh_rate_idle = 60
+vim.g.neovide_remember_window_size = true
+
+-- vim.o.guifont = "minecraft enchantment"
+vim.o.guifont = "CaskaydiaCove Nerd Font:h13"
+vim.o.termguicolors = true
+
+-- Set terminal colors for neovide
+local set_term_colors = function()
+	vim.g.terminal_color_0 = "#0d0d0d"
+	vim.g.terminal_color_1 = "#FF301B"
+	vim.g.terminal_color_2 = "#80E521"
+	vim.g.terminal_color_3 = "#FFC620"
+	vim.g.terminal_color_4 = "#1BA6FA"
+	vim.g.terminal_color_5 = "#8763B8"
+	vim.g.terminal_color_6 = "#21DEEF"
+	vim.g.terminal_color_7 = "#EBEBEB"
+
+	vim.g.terminal_color_8 = "#6D7070"
+	vim.g.terminal_color_9 = "#FF4352"
+	vim.g.terminal_color_10 = "#98E466"
+	vim.g.terminal_color_11 = "#FFD750"
+	vim.g.terminal_color_12 = "#1BA6FA"
+	vim.g.terminal_color_13 = "#A578EA"
+	vim.g.terminal_color_14 = "#73FBF1"
+	vim.g.terminal_color_15 = "#FEFEF8"
+end
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["x"] = "\"_x"
-lvim.keys.normal_mode["dd"] = "\"_dd"
+lvim.keys.normal_mode["x"] = '"_x'
+lvim.keys.normal_mode["dd"] = '"_dd'
+lvim.keys.normal_mode["`"] = function() print("Hello") end
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- overrie a default keymapping
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
-lvim.keys.normal_mode["<C-u>"] = "<C-r>"
-lvim.keys.normal_mode["<C-i>"] = "<Esc>"
-lvim.keys.normal_mode["<C-`>"] = "<C-Bslash>"
+lvim.keys.normal_mode["<S-u>"] = ":redo<CR>"
+lvim.keys.normal_mode["<C-r>"] = nil
+-- vim.keymap.del('n', '<C-r>')
+lvim.keys.normal_mode["<F11>"] = function()
+	vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+end
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -57,6 +119,21 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.gitsigns.opts.current_line_blame = true
 lvim.builtin.gitsigns.opts.current_line_blame_opts.delay = 50
 lvim.builtin.gitsigns.opts.current_line_blame_formatter_opts.relative_time = true
+lvim.builtin.indentlines.options = {
+	char = "┆",
+	use_treesitter = false,
+	show_current_context = true,
+	show_current_context_start = false,
+	show_trailing_blankline_indent = false,
+}
+-- lvim.builtin.gitsigns.opts.signs = {
+-- 	add          = { text = '│' },
+-- 	change       = { text = '│' },
+-- 	delete       = { text = '_' },
+-- 	topdelete    = { text = '‾' },
+-- 	changedelete = { text = '~' },
+-- 	untracked    = { text = '┆' },
+-- }
 
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
@@ -79,7 +156,7 @@ lvim.builtin.which_key.mappings["w"] = {
 	name = "+Save",
 	w = { ":w!<CR>", "Save current file" },
 	a = { ":wa!<CR>", "Save all files" },
-	s = { ":w !sudo tee >/dev/null %:p:S<CR><CR>", "Save current file with sudo" }
+	s = { ":w !sudo tee >/dev/null %:p:S<CR><CR>", "Save current file with sudo" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -98,20 +175,31 @@ lvim.builtin.treesitter.ensure_installed = {
 	"c",
 	"cpp",
 	"cmake",
-	"javascript",
-	"json",
-	"lua",
-	"python",
-	"typescript",
-	"tsx",
-	"css",
 	"rust",
 	"java",
+	"lua",
+	"python",
+	"css",
+	"html",
+	"javascript",
+	"tsx",
+	"typescript",
 	"yaml",
+	"json",
+	"vim",
+	"markdown",
+	"markdown_inline",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+-- lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.rainbow = {
+	enable = true,
+	-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+	extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+	max_file_lines = nil, -- Do not enable for files with more than n lines, int
+	colors = { "#FF79C6", "#A4FFFF", "#50fa7b", "#FFFFA5", "#FF92DF", "#5e81ac", "#b48ead" }, -- table of hex strings
+}
 lvim.builtin.cmp.experimental.ghost_text = true
 
 -- generic LSP settings
@@ -196,13 +284,13 @@ lvim.plugins = {
 		cmd = "TroubleToggle",
 	},
 	{ "lunarvim/darkplus.nvim" },
-	{ "Mofiqul/dracula.nvim" },
-	-- {
-	--   "Mofiqul/dracula.nvim",
-	--   require("dracula").setup {
-	--     italic_comment = true
-	--   }
-	-- },
+	-- { "Mofiqul/dracula.nvim" },
+	{
+		"Mofiqul/dracula.nvim",
+		require("dracula").setup({
+			italic_comment = true,
+		}),
+	},
 	--[[ {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -215,25 +303,28 @@ lvim.plugins = {
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "BufRead",
-		config = function() require "lsp_signature".on_attach() end,
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
 	},
 	{
 		"nacro90/numb.nvim",
 		event = "BufRead",
 		config = function()
-			require("numb").setup {
+			require("numb").setup({
 				show_numbers = true, -- Enable 'number' for the window while peeking
 				show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-			}
+			})
 		end,
 	},
 	{
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
 		config = function()
-			require('neoscroll').setup {
+			require("neoscroll").setup({
 				-- All these keys will be mapped to their corresponding default scrolling animation
-				mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+				-- mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+				mappings = { "<C-y>", "<C-e>", "zt", "zz", "zb" },
 				hide_cursor = true, -- Hide cursor while scrolling
 				stop_eof = true, -- Stop at <EOF> when scrolling downwards
 				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
@@ -242,12 +333,12 @@ lvim.plugins = {
 				easing_function = nil, -- Default easing function
 				pre_hook = nil, -- Function to run before the scrolling animation starts
 				post_hook = nil, -- Function to run after the scrolling animation ends
-			}
-			require('neoscroll.config').set_mappings {
-				['<PageUp>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } },
-				['<PageDown>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-			}
-		end
+			})
+			require("neoscroll.config").set_mappings({
+				["<PageUp>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "450" } },
+				["<PageDown>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "450" } },
+			})
+		end,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
@@ -264,8 +355,27 @@ lvim.plugins = {
 			})
 		end,
 	},
+	{
+		"m00qek/baleia.nvim",
+	},
 }
 
+set_term_colors()
+
+local baleia = require("baleia").setup({})
+vim.api.nvim_create_user_command("BaleiaColorize", function()
+	baleia.once(vim.fn.bufnr(vim.fn.expand("%")))
+end, {})
+
+vim.api.nvim_create_user_command("CargoCheck", function()
+	-- vim.api.nvim_command('vnew | :read !cargo --color=always check')
+	-- vim.api.nvim_command('0d_')
+	-- vim.api.nvim_command('BaleiaColorize')
+	vim.api.nvim_command('silent "!cargo --color=always check &> target/build.log"')
+	vim.api.nvim_command("vnew target/build.log")
+	-- vim.api.nvim_command('vnew target/build.log | BaleiaColorize')
+	-- vim.api.nvim_command('write')
+end, {})
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
