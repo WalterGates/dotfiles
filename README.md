@@ -5,7 +5,8 @@ WalterGates' dot files.
 You will need git and stow.
 ```
 $ git clone https://github.com/WalterGates/dotfiles.git ~/.dotfiles
-$ stow --target=~ --dir=~/.dotfiles */
+$ cd ~/.dotfiles
+$ stow */
 ```
 
 ## Install vscode extensions
