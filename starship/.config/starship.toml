@@ -1,0 +1,233 @@
+format = """
+[╭─](bright-black)\
+$os\
+$username\
+[](bg:blue fg:white)\
+$directory\
+[](bg:green fg:blue)\
+$git_branch\
+$git_status\
+[](fg:green)\
+$fill\
+$cmd_duration
+[╰─](bright-black)\
+$character"""
+
+# format = """
+# [╭─](bright-black)\
+# $os\
+# $username\
+# $character\
+# $directory\
+# [](bg:green fg:blue)\
+# $git_branch\
+# $git_status\
+# [](fg:green)\
+# $fill\
+# $cmd_duration
+# [╰─](bright-black) """
+
+# Disable the blank line at the start of the prompt
+add_newline = true
+
+# You can also replace your username with a neat symbol like   or disable this
+# and use the os module below
+[username]
+show_always = true
+style_user = "bg:white fg:black"
+style_root = "bg:white fg:black"
+format = '[$user ]($style)'
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+format = "[ $symbol]($style)"
+style = "bg:white fg:black"
+disabled = false # Disabled by default
+
+[directory]
+# home_symbol = " " 
+read_only = ""
+style = "bg:blue fg:white"
+read_only_style = "bg:blue fg:white"
+format = "[  ]($style)[( $read_only)]($read_only_style)[ $path ]($style)"
+truncation_length = 6
+truncation_symbol = "…/"
+
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+# [directory.substitutions]
+# "Documents" = " "
+# "Downloads" = " "
+# "Music" = " "
+# "Pictures" = " "
+# "Videos" = " "
+# "Desktop" = " "
+
+# Keep in mind that the order matters. For example:
+# "Important Documents" = "  "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important  " = "  "
+
+[fill]
+symbol = " "
+style = ""
+
+[cmd_duration]
+format = '[](fg:yellow)[ $duration   ](fg:black bg:yellow)'
+
+[time]
+disabled = true
+time_format = "%R" # Hour:Minute Format
+
+[git_branch]
+symbol = "  "
+style = "fg:black bg:green"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "fg:black bg:green"
+# style = "($all_status$ahead_behind)"
+conflicted = "=$count "
+ahead = "⇡$count "
+behind = "⇣$count "
+diverged = "⇕$count "
+untracked = "?$count "
+stashed = "$$count "
+modified = "!$count "
+staged = "+$count "
+renamed = "»$count "
+deleted = "✘$count "
+format = '[$all_status$ahead_behind]($style)'
+
+# [character]
+# format = "$symbol"
+# success_symbol = "[](fg:white bg:yellow)[INSERT](bg:yellow)[](fg:yellow bg:blue)"
+# error_symbol = "[](fg:white bg:yellow)[INSERT](bg:yellow)[](fg:yellow bg:blue)"
+# vimcmd_symbol = "[](fg:white bg:cyan)[NORMAL](bg:cyan)[](fg:cyan bg:blue)"
+# vimcmd_visual_symbol = "[](fg:white bg:purple)[VISUAL](bg:purple)[](fg:purple bg:blue)"
+# vimcmd_replace_symbol = "[](fg:white bg:purple)[REPLACE](bg:purple)[](fg:purple bg:blue)"
+# vimcmd_replace_one_symbol = "[](fg:white bg:purple)[REPLACE](bg:purple)[](fg:purple bg:blue)"
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "﯑ "
+Gentoo = " "
+HardenedBSD = "ﲊ "
+Illumos = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = " "
+openSUSE = " "
+OracleLinux = " "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = " "
+Solus = "ﴱ "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
+
+[c]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[nodejs]
+symbol = ""
+
+[nim]
+symbol = " "
+
+[rust]
+symbol = ""
+
+[scala]
+symbol = " "
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haxe]
+symbol = "⌘ "
+
+[hg_branch]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[meson]
+symbol = "喝 "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[ruby]
+symbol = " "
+
+[spack]
+symbol = "🅢 "

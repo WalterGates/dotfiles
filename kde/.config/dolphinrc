@@ -1,0 +1,35 @@
+MenuBar=Disabled
+
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
+
+[DetailsMode]
+ExpandableFolders=false
+PreviewSize=22
+
+[General]
+Version=202
+ViewPropsTimestamp=2023,2,9,15,50,14.916
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[KPropertiesDialog]
+2 screens: Height=616
+2 screens: Width=479
+HDMI-1 DP-2 Height 1536x864 HDMI-1=598
+HDMI-1 DP-2 Width 1536x864 HDMI-1=488
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[MainWindow][Toolbar mainToolBar]
+ToolButtonStyle=IconOnly
+
+[PreviewSettings]
+Plugins=imagethumbnail,opendocumentthumbnail,windowsimagethumbnail,windowsexethumbnail,cursorthumbnail,jpegthumbnail,audiothumbnail,djvuthumbnail,kraorathumbnail,appimagethumbnail,ebookthumbnail,exrthumbnail,svgthumbnail,comicbookthumbnail,directorythumbnail,fontthumbnail
+
+[Toolbar mainToolBar]
+ToolButtonStyle=IconOnly
