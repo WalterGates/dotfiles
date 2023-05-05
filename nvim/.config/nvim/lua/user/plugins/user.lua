@@ -10,6 +10,10 @@ return {
   --   end,
   -- },
   {
+    "Mofiqul/vscode.nvim",
+    italic_comments = true,
+  },
+  {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     -- {
     --   config = function()
