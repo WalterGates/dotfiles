@@ -4,6 +4,7 @@
 # Allow only user customization files
 !.gitignore
 !profiles.ini
+!librewolf.overrides.cfg
 !custom_profile/
 !custom_profile/user.js
 !custom_profile/prefs.js
