@@ -1,0 +1,142 @@
+{
+	"C_Cpp.intelliSenseEngine": "disabled",
+	"C_Cpp.default.configurationProvider": "cmake-tools",
+	"C_Cpp.formatting": "clangFormat",
+	"clangd.arguments": [
+		"--completion-style=bundled",
+		"--header-insertion=never",
+		"--clang-tidy",
+		"--function-arg-placeholders=false"
+	],
+	"[cuda-cpp]": {
+		"editor.wordBasedSuggestions": false,
+		"editor.suggest.insertMode": "replace",
+		"editor.semanticHighlighting.enabled": true
+	},
+	// "C_Cpp.formatting": "vcFormat",
+	// "C_Cpp.default.cppStandard": "c++20",
+	// "C_Cpp.vcFormat.space.insertAfterSemicolon": true,
+	// "C_Cpp.vcFormat.space.afterComma": true,
+	// "C_Cpp.vcFormat.indent.preserveComments": true,
+	// "C_Cpp.vcFormat.space.preserveInInitializerList": false,
+	// "C_Cpp.vcFormat.indent.caseLabels": true,
+	// "C_Cpp.vcFormat.indent.namespaceContents": false,
+	// "C_Cpp.vcFormat.newLine.beforeElse": false,
+	// "C_Cpp.vcFormat.indent.lambdaBracesWhenParameter": false,
+	// "C_Cpp.vcFormat.newLine.beforeCatch": false,
+	// "cmake.buildDirectory": "${workspaceFolder}/build/${buildKit}/${buildType}",
+	"cmake.buildDirectory": "${workspaceFolder}/build",
+	"cmake.configureOnEdit": false,
+	"cmake.statusbar.visibility": "compact",
+	"cmake.configureOnOpen": false,
+	"cmake.debugConfig": {
+		"console": "newExternalWindow",
+		"cwd": "${workspaceFolder}"
+	},
+	"[cpp]": {
+		"editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+	},
+	"[cmake]": {
+		"editor.defaultFormatter": "josetr.cmake-language-support-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"debug.console.closeOnEnd": true,
+	"debug.showInStatusBar": "always",
+	"editor.tabCompletion": "on",
+	"editor.insertSpaces": false,
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true,
+	"editor.detectIndentation": false,
+	"editor.defaultFormatter": "ms-vscode.cpptools",
+	"editor.foldingHighlight": false,
+	"editor.mouseWheelZoom": false,
+	"editor.unicodeHighlight.invisibleCharacters": false,
+	"workbench.tree.indent": 16,
+	"workbench.startupEditor": "none",
+	"workbench.layoutControl.type": "toggles",
+	"workbench.iconTheme": "material-icon-theme",
+	"explorer.confirmDragAndDrop": false,
+	"explorer.compactFolders": false,
+	"explorer.autoReveal": false,
+	"explorer.confirmDelete": false,
+	"explorer.copyRelativePathSeparator": "/",
+	"explorer.expandSingleFolderWorkspaces": false,
+	"explorer.fileNesting.expand": false,
+	"material-icon-theme.folders.color": "#f4d567",
+	"material-icon-theme.hidesExplorerArrows": true,
+	"git.confirmSync": false,
+	"security.workspace.trust.untrustedFiles": "open",
+	"todohighlight.defaultStyle": {
+		"color": "#57A64A",
+		"backgroundColor": "#273525",
+		"overviewRulerColor": "#57A64A"
+	},
+	"todohighlight.keywords": [
+		{
+			"text": "HACK:",
+			"color": "#57A64A",
+			"backgroundColor": "#273525",
+			"overviewRulerColor": "#57A64A"
+		},
+		{
+			"text": "NOTE:",
+			"color": "#57A64A",
+			"backgroundColor": "#273525",
+			"overviewRulerColor": "#57A64A"
+		},
+		{
+			"text": "TODO:",
+			"color": "#e68630",
+			"backgroundColor": "#573015",
+			"overviewRulerColor": "#e68630"
+		},
+		{
+			"text": "FIXME:",
+			"color": "#ff4c52",
+			"backgroundColor": "#50191b",
+			"overviewRulerColor": "#ff4c52"
+		},
+	],
+	"terminal.integrated.scrollback": 1500,
+	"workbench.sideBar.location": "right",
+	"debug.openDebug": "neverOpen",
+	"C_Cpp.codeAnalysis.clangTidy.enabled": true,
+	"C_Cpp.codeAnalysis.clangTidy.useBuildPath": true,
+	"liveServer.settings.donotShowInfoMsg": true,
+	"editor.inlayHints.enabled": "off",
+	"files.exclude": {
+		"**/.cache": true
+	},
+	"editor.minimap.autohide": true,
+	"editor.fontLigatures": true,
+	"C_Cpp.codeAnalysis.maxConcurrentThreads": 18,
+	"C_Cpp.codeAnalysis.runAutomatically": false,
+	"editor.fontFamily": "CaskaydiaCove Nerd Font, Cascadia Code, 'Courier New', monospace",
+	"terminal.integrated.defaultProfile.linux": "fish",
+	"settingsSync.keybindingsPerPlatform": false,
+	"window.commandCenter": false,
+	"window.titleBarStyle": "custom",
+	"workbench.productIconTheme": "material-product-icons",
+	"workbench.colorTheme": "Visual Studio Dark - C++",
+	"hexeditor.columnWidth": 16,
+	"hexeditor.showDecodedText": true,
+	"hexeditor.defaultEndianness": "little",
+	"hexeditor.inspectorType": "aside",
+	"diffEditor.ignoreTrimWhitespace": false,
+	"window.zoomLevel": 1,
+	"lldb.suppressUpdateNotifications": true
+}

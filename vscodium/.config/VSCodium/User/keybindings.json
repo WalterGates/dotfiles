@@ -1,0 +1,118 @@
+// Place your key bindings in this file to override the defaults
+[
+	{
+		"key": "alt+w",
+		"when": "editorTextFocus",
+		"command": "selectby.regex",
+		"args": [
+			"selectFloat"
+		]
+	},
+	{
+		"key": "alt+w",
+		"command": "-toggleSearchWholeWord",
+		"when": "searchViewletFocus"
+	},
+	{
+		"key": "ctrl+shift+s",
+		"command": "workbench.action.files.saveFiles"
+	},
+	{
+		"key": "ctrl+k ctrl+k",
+		"command": "workbench.action.terminal.clear"
+	},
+	{
+		"key": "ctrl+shift+b",
+		"command": "-workbench.action.tasks.build"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "cmake.build",
+		"when": "cmake:enableFullFeatureSet && !cmake:hideBuildCommand"
+	},
+	{
+		"key": "f7",
+		"command": "-cmake.build",
+		"when": "cmake:enableFullFeatureSet && !cmake:hideBuildCommand"
+	},
+	{
+		"key": "f5",
+		"command": "cmake.debugTarget",
+		"when": "cmake:enableFullFeatureSet && inCMakeProject && !cmake:hideDebugCommand && !inDebugMode && debugState == 'inactive'"
+	},
+	{
+		"key": "ctrl+f5",
+		"command": "-cmake.debugTarget",
+		"when": "cmake:enableFullFeatureSet && inCMakeProject && !cmake:hideDebugCommand && !inDebugMode"
+	},
+	{
+		"key": "ctrl+v",
+		"command": "editor.action.clipboardPasteAction"
+	},
+	{
+		"key": "ctrl+alt+v",
+		"command": "extension.columnpaste"
+	},
+	{
+		"key": "ctrl+alt+v",
+		"command": "-extension.columnpaste"
+	},
+	{
+		"key": "ctrl+v",
+		"command": "-editor.action.clipboardPasteAction"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "-workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.togglePanel"
+	},
+	{
+		"key": "ctrl+j",
+		"command": "-workbench.action.togglePanel"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "ctrl+shift+b",
+		"command": "workbench.action.tasks.build"
+	},
+	{
+		"key": "ctrl+k s",
+		"command": "-saveAll"
+	},
+	{
+		"key": "ctrl+k s",
+		"command": "workbench.files.action.compareWithSaved"
+	},
+	{
+		"key": "ctrl+k d",
+		"command": "-workbench.files.action.compareWithSaved"
+	},
+	// {
+	// 	"key": "ctrl+shift+b",
+	// 	"command": "-workbench.action.tasks.build"
+	// },
+	// {
+	// 	"key": "ctrl+w",
+	// 	"command": "-workbench.action.closeActiveEditor"
+	// },
+	// {
+	// 	"key": "ctrl+b",
+	// 	"command": "-workbench.action.toggleSidebarVisibility"
+	// },
+	// {
+	// 	"key": "ctrl+shift+s",
+	// 	"command": "-workbench.action.files.saveAs"
+	// },
+	// {
+	// 	"key": "ctrl+shift+s",
+	// 	"command": "-workbench.action.files.saveLocalFile",
+	// 	"when": "remoteFileDialogVisible"
+	// }
+]
