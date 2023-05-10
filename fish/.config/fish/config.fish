@@ -10,5 +10,7 @@ set fish_cursor_default     block      blink
 set fish_cursor_insert      line       blink
 set fish_cursor_replace_one underscore blink
 set fish_cursor_visual      block
+
 set -gx EDITOR nvim
+set -gx GTK_USE_PORTAL 1
 
