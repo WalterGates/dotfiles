@@ -13,4 +13,5 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --syntax-theme='Visual Studio Dark+' --paging=never
+    pager: delta --dark --syntax-theme='Enki-Tokyo-Night' --paging=never
+    # pager: delta --dark --paging=never
