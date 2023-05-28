@@ -11,13 +11,19 @@ vim.o.timeoutlen = 300
 
 -- lvim.colorscheme = 'darkplus'
 lvim.format_on_save = false
+lvim.builtin.treesitter.ensure_installed = { "markdown_inline", "regex" }
 
-lvim.keys.normal_mode['<S-u>'] = ':redo<CR>'
-lvim.keys.normal_mode['<C-q>'] = ':q<cr>' -- or vim.keymap.set('n', '<C-q>', ':q<cr>' )
-lvim.keys.normal_mode['<S-h>'] = ':BufferLineCyclePrev<CR>'
-lvim.keys.normal_mode['<S-l>'] = ':BufferLineCycleNext<CR>'
+lvim.keys.normal_mode['<S-u>'] = '<cmd>redo<cr>'
+lvim.keys.normal_mode['<C-q>'] = '<cmd>q<cr>' -- or vim.keymap.set('n', '<C-q>', ':q<cr>' )
+lvim.keys.normal_mode['<S-h>'] = '<cmd>BufferLineCyclePrev<cr>'
+lvim.keys.normal_mode['<S-l>'] = '<cmd>BufferLineCycleNext<cr>'
 lvim.keys.normal_mode['j'] = 'gj'
 lvim.keys.normal_mode['k'] = 'gk'
+lvim.keys.normal_mode['<C-space>'] = '<cmd>ToggleTerm direction=float<cr>'
+lvim.keys.visual_mode['<C-space>'] = '<cmd>ToggleTerm direction=float<cr>'
+lvim.keys.insert_mode['<C-space>'] = '<cmd>ToggleTerm direction=float<cr>' -- TODO: conflict with cmp enable
+lvim.keys.term_mode['<C-space>'] = '<cmd>ToggleTerm direction=float<cr>'
+lvim.keys.term_mode['<M-esc>'] = '<C-\\><C-n>'
 
 lvim.builtin.which_key.mappings["S"] = {
     name = "Session",
@@ -93,42 +99,34 @@ lvim.plugins = {
             }
         end,
     },
-    -- {
-    --     "folke/todo-comments.nvim",
-    --     -- event = "BufRead",
-    --     -- config = function()
-    --     --     require("todo-comments").setup()
-    --     -- end,
-    --     opts = {
-    --         signs = false,
-    --         keywords = {
-    --             FIX = { color = 'red', alt = { 'FIXME', 'BUG', 'ISSUE' } },               -- FIX:
-    --             TODO = { color = 'orange', alt = { 'Todo' } },                            -- TODO:
-    --             WARN = { color = 'orange', alt = { 'WARNING', 'XXXX' } },                 -- WARN:
-    --             HACK = { color = 'green', },                                              -- HACK:
-    --             NOTE = { color = 'green', alt = { 'INFO' } },                             -- NOTE:
-    --             PERF = { color = 'green', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } }, -- PERF:
-    --             TEST = { color = 'green', alt = { 'TESTING', 'PASSED', 'FAILED' } }       -- TEST:
-    --         },
-    --         gui_style = {
-    --             fg = 'NONE',
-    --             bg = 'BOLD'
-    --         },
-    --         merge_keywords = true,
-    --         highlight = {
-    --             multiline = true,
-    --             before = '',
-    --             keyword = 'bg',
-    --             after = 'fg',
-    --             comments_only = true,
-    --         },
-    --         colors = {
-    --             green = { '#57A64A' },
-    --             orange = { '#e68630' },
-    --             red = { '#ff4c52' },
-    --         },
-    --     },
-    -- },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            signs = true,
+            keywords = {
+                FIX = { icon = ' ', alt = { 'FIXME', 'BUG', 'ISSUE' } },
+                WARN = { icon = ' ', alt = { 'WARNING', 'XXXX' } },
+                HACK = { icon = ' ' },
+                TODO = { icon = ' ', alt = { 'Todo' } },
+                NOTE = { icon = '󰆉 ', alt = { 'INFO' } },
+                PERF = { icon = '󰓅 ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+                TEST = { icon = ' ', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+            },
+            gui_style = {
+                fg = 'NONE',
+                bg = 'BOLD'
+            },
+            merge_keywords = true,
+            highlight = {
+                multiline = true,
+                before = '',
+                keyword = 'bg',
+                after = 'fg',
+                comments_only = true,
+            },
+        },
+    },
     {
         "nvim-telescope/telescope-project.nvim",
         -- event = "BufWinEnter",
@@ -151,7 +149,7 @@ lvim.plugins = {
 require('nvim-treesitter.configs').setup({
     rainbow = {
         colors = {
-            '#C94F68', '#84b050', '#D29052', -- '#14788C',
+            -- '#C94F68', '#84b050', '#D29052', -- '#14788C',
             -- '#F7768E', '#9ECE6A', '#FF9E64', '#2AC3DE',
         },
     },
@@ -160,6 +158,83 @@ require('nvim-treesitter.configs').setup({
 lvim.builtin.telescope.on_config_done = function(telescope)
     pcall(telescope.load_extension, "project")
 end
+
+local function hex_to_rgb(hex_color)
+    return {
+        r = tonumber(hex_color:sub(2, 3), 16),
+        g = tonumber(hex_color:sub(4, 5), 16),
+        b = tonumber(hex_color:sub(6, 7), 16),
+    }
+end
+
+local function blend_colors(hex_color1, hex_color2, t)
+    t = math.min(math.max(t, 0), 1)
+
+    local a = hex_to_rgb(hex_color1)
+    local b = hex_to_rgb(hex_color2)
+
+    local result = {}
+    for key, _ in pairs(a) do
+        result[key] = math.floor(a[key] + (b[key] - a[key]) * t)
+    end
+
+    return {
+        fg = hex_color1,
+        bg = string.format("#%02x%02x%02x", result.r, result.g, result.b),
+    }
+end
+
+lvim.autocommands = { {
+    "ColorScheme",
+    {
+        pattern = "*",
+        callback = function()
+            vim.api.nvim_set_hl(0, "@function.builtin", { link = "Function" })
+            vim.api.nvim_set_hl(0, "@lsp.mod.constructorOrDestructor.cpp", { link = "Function" })
+            -- vim.api.nvim_set_hl(0, "@constructor", { link = "Function" })
+            --
+            vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", {})
+            vim.api.nvim_set_hl(0, "@type.qualifier", { link = "Keyword" })
+            vim.api.nvim_set_hl(0, "@storageclass", { link = "Keyword" })
+            vim.api.nvim_set_hl(0, "PreProc", { link = "Include" })
+            vim.api.nvim_set_hl(0, "Define", { link = "Include" })
+            vim.api.nvim_set_hl(0, "@lsp.mod.readonly", { underline = true })
+            -- vim.api.nvim_set_hl(0, "@lsp.mod.constant", { underline = true })
+            vim.api.nvim_set_hl(0, "@lsp.mod.mutable", { underline = true })
+            vim.api.nvim_set_hl(0, "Constant", { fg = '#e0af68', underline = true })
+            vim.api.nvim_set_hl(0, "@lsp.typemod.variable.fileScope", { link = "@variable.builtin" })
+            vim.api.nvim_set_hl(0, "@lsp.type.builtinType", { link = "type" })
+
+            vim.api.nvim_set_hl(0, "Delimiter", { link = "Operator" })
+            -- vim.api.nvim_set_hl(0, "@lsp.type.variable.rust", { underline = true })
+            -- vim.api.nvim_set_hl(0, "@lsp.type.parameter.rust", { link = 'Parameter', underline = true })
+            vim.api.nvim_set_hl(0, "@include.rust", { link = "Keyword" })
+
+            vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "Operator" })
+            vim.api.nvim_set_hl(0, "@constructor.lua", {})
+
+            vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "LspReferenceText" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "LspReferenceText" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "LspReferenceText" })
+
+            vim.api.nvim_set_hl(0, "TodoFgFIX", { link = 'DiagnosticError' })
+            vim.api.nvim_set_hl(0, "TodoFgWARN", { link = 'DiagnosticWarn' })
+            vim.api.nvim_set_hl(0, "TodoFgHACK", { link = 'DiagnosticWarn' })
+            vim.api.nvim_set_hl(0, "TodoFgTODO", { link = 'DiagnosticInfo' })
+            vim.api.nvim_set_hl(0, "TodoFgNOTE", { link = 'DiagnosticHint' })
+            vim.api.nvim_set_hl(0, "TodoFgPERF", { fg = '#bb9af7' })
+            vim.api.nvim_set_hl(0, "TodoFgTEST", { fg = '#bb9af7' })
+
+            vim.api.nvim_set_hl(0, "TodoBgFIX", blend_colors('#db4b4b', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgWARN", blend_colors('#e0af68', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgHACK", blend_colors('#e0af68', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgTODO", blend_colors('#0db9df', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgNOTE", blend_colors('#1abc9c', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgPERF", blend_colors('#bb9af7', '#1A1B26', 0.8))
+            vim.api.nvim_set_hl(0, "TodoBgTEST", blend_colors('#bb9af7', '#1A1B26', 0.8))
+        end,
+    },
+} }
 
 local dap = require('dap')
 dap.adapters.codelldb = {
