@@ -4,8 +4,6 @@
 	"C_Cpp.formatting": "clangFormat",
 	"clangd.arguments": [
 		"--completion-style=bundled",
-		"--header-insertion=never",
-		"--clang-tidy",
 		"--function-arg-placeholders=false"
 	],
 	"[cuda-cpp]": {
