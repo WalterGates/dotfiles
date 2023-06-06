@@ -1,3 +1,3 @@
 function help
-$argv --help | bat --plain --language=help
+    $argv --help | bat --plain --language=help
 end
