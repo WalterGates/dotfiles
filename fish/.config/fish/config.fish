@@ -8,7 +8,7 @@ starship init fish | source
 # enable_transience   # TODO: I would like this if it inserted a blank like after each shortened prompt.
 
 # Source private environment variables. These are not publicly synced
-source private.fish
+source ~/.config/fish/private.fish
 
 # Set the cursor shapes for the different vi modes.
 set fish_cursor_default     block      blink
