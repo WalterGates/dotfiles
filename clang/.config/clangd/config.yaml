@@ -1,9 +1,33 @@
+---
+# NOTE: Some flags are also set in the `CLANG_FLAGS` environment variable
+# currently these are `--completion-style=detailed --header-insertion=never --function-arg-placeholders=true`
 CompileFlags:
-  Add: [-std=c++20, -Wall]
+  Add: [-std=c++20, -Wall, -Wextra, -Wextra-semi, -Wshadow, -Wnon-virtual-dtor, -Wold-style-cast, -Wcast-align, -Wunused, -Woverloaded-virtual, -Wpedantic, -Wconversion, -Wsign-conversion, -Wnull-dereference, -Wdouble-promotion, -Wformat=2, -Wimplicit-fallthrough, -Wmisleading-indentation, -Wduplicated-cond, -Wduplicated-branches, -Wlogical-op, -Wuseless-cast]
+  # Add: [-Wall, -Wextra, -Wpedantic, -Wshadow, -std=c++20]
   Remove: []
 
-Hover:
-  ShowAKA: Yes
-
 InlayHints:
-  Enabled: No
+  Enabled: false
+  # Enabled: true
+  # ParameterNames: true
+  # DeducedTypes: true
+  # Designators: false
+
+Hover:
+  ShowAKA: true
+
+Completion:
+  AllScopes: true
+
+Diagnostics:
+  UnusedIncludes: Strict
+
+  ClangTidy:
+    Add: [performance*, modernize*, readability*]
+    Remove: [
+        modernize-use-trailing-return-type, readability-uppercase-literal-suffix, readability-identifier-length,
+        readability-magic-numbers,   # HACK: should be useful but it's too anoying
+        readability-redundant-access-specifiers,
+      ]
+    CheckOptions:
+      readability-identifier-naming.VariableCase: lower_case
