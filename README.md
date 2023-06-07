@@ -4,24 +4,26 @@ WalterGates' dot files.
 
 ## Installation
 
-You will need git and stow.
-```
-$ git clone https://github.com/WalterGates/dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
-$ stow */
+You will need `git` and `stow`.
+```sh
+git clone https://github.com/WalterGates/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow */
 ```
 
 ## Install vscode extensions
 
-Just run the scrip `./install-vscode-extensions.sh`.
-
-Currently this relies on the `code` executable, so it isn't compatible with vscodium's `codium`.
+Just run the scrip. For `vscode` use `./install-vscode-extensions.sh` and for `vscodium` use `./install-vscodium-extensions.sh`.
 
 ## Arch specific
 
-### Pacman color
+### Pacman settings
 
-Add or uncomment the line `Color` in the `[options]` section of `/etc/pacman.conf`.
+Add or uncomment the following lines in the `[options]` section of `/etc/pacman.conf`:
+- `Color` for colored output.
+- `ParallelDownloads = 10` for enabling parallel downloads. If you are on weaker hardware or your
+internet connection isn't that good, consider lowering this number.
+
 ```
 [options]
 Color
@@ -29,7 +31,8 @@ Color
 
 ### Use `dash` as `/bin/sh`
 
-To ensure that `bash` won't overrite `dash` when it updates, create a pacman hook to always change it back. Write the following to `/usr/share/libalpm/hooks/bash-update1.hook`:
+To ensure that `bash` won't overrite `dash` as `/bin/sh` when it updates, create a pacman hook to always change it
+back. Write the following to `/usr/share/libalpm/hooks/bash-update1.hook`:
 ```
 [Trigger]
 Type = Package
@@ -45,10 +48,10 @@ Depends = dash
 ```
 
 Afterwards you can either manually symlink `/bin/sh` to `dash`
+```sh
+sudo ln -sfT dash /usr/bin/sh
 ```
-$ sudo ln -sfT dash /usr/bin/sh
-```
-or just update or reinstall `bash` and the symlink will be created automatically.
-```
-$ sudo pacman -S bash
+or easier just update or reinstall `bash` and the symlink will be created automatically.
+```sh
+sudo pacman -S bash
 ```
