@@ -27,6 +27,7 @@ internet connection isn't that good, consider lowering this number.
 ```
 [options]
 Color
+ParallelDownloads = 10
 ```
 
 ### Use `dash` as `/bin/sh`
