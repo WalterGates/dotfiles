@@ -1,7 +1,6 @@
 format = """
 [╭─](bright-black)\
 $os\
-$username\
 [](bg:blue fg:white)\
 $directory\
 [](bg:green fg:blue)\
@@ -17,7 +16,7 @@ $character"""
 # [╭─](bright-black)\
 # $os\
 # $username\
-# $character\
+# [](bg:blue fg:white)\
 # $directory\
 # [](bg:green fg:blue)\
 # $git_branch\
@@ -25,7 +24,8 @@ $character"""
 # [](fg:green)\
 # $fill\
 # $cmd_duration
-# [╰─](bright-black) """
+# [╰─](bright-black)\
+# $character"""
 
 # Disable the blank line at the start of the prompt
 add_newline = true
