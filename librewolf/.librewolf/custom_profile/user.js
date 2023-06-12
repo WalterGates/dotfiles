@@ -23,19 +23,7 @@ user_pref("extensions.formautofill.addresses.enabled", true);
 user_pref("extensions.formautofill.creditCards.enabled", true);
 user_pref("services.sync.prefs.sync-seen.spellchecker.dictionary", true);
 user_pref("spellchecker.dictionary", "en-US,en-US-large,");
-
-// TODO: These disable full screen fade animation, idk if they are necessary
-user_pref("full-screen-api.transition-duration.enter", "0 0")
-user_pref("full-screen-api.transition-duration.leave", "0 0")
 user_pref("full-screen-api.warning.timeout", 0);
-
-// FIXME: Idk what any of these do
-// user_pref("extensions.ui.dictionary.hidden", true);
-// user_pref("extensions.ui.lastCategory", "addons://list/theme");
-// user_pref("extensions.ui.locale.hidden", true);
-// user_pref("extensions.ui.sitepermission.hidden", true);
-// user_pref("network.http.referer.XOriginPolicy", 2);
-
 user_pref("browser.startup.page", 3);   // NOTE: This enables opening previous windows and tabs
 user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.monospace.x-western", "monospace");
@@ -45,7 +33,6 @@ user_pref("general.autoScroll", true);
 user_pref("identity.fxaccounts.enabled", true);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 user_pref("middlemouse.paste", false);
-
 user_pref("privacy.clearOnShutdown.cache", false);
 user_pref("privacy.clearOnShutdown.cookies", false);
 user_pref("privacy.clearOnShutdown.offlineApps", false);
@@ -53,9 +40,14 @@ user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
+user_pref("findbar.highlightAll", true);
+user_pref("browser.theme.content-theme", 0);
+user_pref("browser.theme.toolbar-theme", 0);
+user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
 
 // TODO: add the rest of my extensions
 // user_pref("browser.policies.runOncePerModification.extensionsInstall", "[\"https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi\"]");
+// TODO: Set `StartPage` as default search engine, idealy with custom url
 // user_pref("browser.urlbar.placeholderName", "StartPage");
 // user_pref("browser.urlbar.placeholderName.private", "StartPage");
 
