@@ -1,3 +1,66 @@
+// ==== Start of personal settings ================================================================
+
+user_pref("browser.display.use_document_fonts", 0);
+user_pref("browser.download.autohideButton", true);
+user_pref("browser.formfill.enable", true);
+user_pref("browser.newtabpage.activity-stream.showSearch", false);
+user_pref("browser.search.hiddenOneOffs", "DuckDuckGo,DuckDuckGo Lite,MetaGer,SearXNG - searx.be,Wikipedia (en)");
+user_pref("browser.search.suggest.enabled", true);
+user_pref("browser.search.suggest.enabled.private", true);
+user_pref("browser.toolbars.bookmarks.visibility", "always");
+user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"ublock0_raymondhill_net-browser-action\",\"_55f61747-c3d3-4425-97f9-dfc19a0be23c_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"save-to-pocket-button\",\"downloads-button\",\"simple-tab-groups_drive4ik-browser-action\",\"addon_darkreader_org-browser-action\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"developer-button\",\"_55f61747-c3d3-4425-97f9-dfc19a0be23c_-browser-action\",\"addon_darkreader_org-browser-action\",\"simple-tab-groups_drive4ik-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":4}");
+user_pref("browser.uidensity", 1);
+user_pref("browser.urlbar.shortcuts.bookmarks", false);
+user_pref("browser.urlbar.shortcuts.history", false);
+user_pref("browser.urlbar.shortcuts.tabs", false);
+user_pref("browser.urlbar.suggest.bookmark", false);
+user_pref("browser.urlbar.suggest.engines", false);
+user_pref("browser.urlbar.suggest.openpage", false);
+user_pref("browser.urlbar.suggest.searches", true);
+user_pref("browser.urlbar.suggest.topsites", false);
+user_pref("clipboard.autocopy", false);
+user_pref("extensions.formautofill.addresses.enabled", true);
+user_pref("extensions.formautofill.creditCards.enabled", true);
+user_pref("services.sync.prefs.sync-seen.spellchecker.dictionary", true);
+user_pref("spellchecker.dictionary", "en-US,en-US-large,");
+
+// TODO: These disable full screen fade animation, idk if they are necessary
+user_pref("full-screen-api.transition-duration.enter", "0 0")
+user_pref("full-screen-api.transition-duration.leave", "0 0")
+user_pref("full-screen-api.warning.timeout", 0);
+
+// FIXME: Idk what any of these do
+// user_pref("extensions.ui.dictionary.hidden", true);
+// user_pref("extensions.ui.lastCategory", "addons://list/theme");
+// user_pref("extensions.ui.locale.hidden", true);
+// user_pref("extensions.ui.sitepermission.hidden", true);
+// user_pref("network.http.referer.XOriginPolicy", 2);
+
+user_pref("browser.startup.page", 3);   // NOTE: This enables opening previous windows and tabs
+user_pref("font.default.x-western", "sans-serif");
+user_pref("font.name.monospace.x-western", "monospace");
+user_pref("font.name.sans-serif.x-western", "sans-serif");
+user_pref("font.name.serif.x-western", "serif");
+user_pref("general.autoScroll", true);
+user_pref("identity.fxaccounts.enabled", true);
+user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+user_pref("middlemouse.paste", false);
+
+user_pref("privacy.clearOnShutdown.cache", false);
+user_pref("privacy.clearOnShutdown.cookies", false);
+user_pref("privacy.clearOnShutdown.offlineApps", false);
+user_pref("privacy.donottrackheader.enabled", true);
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
+user_pref("signon.autofillForms", true);
+user_pref("signon.rememberSignons", true);
+
+// TODO: add the rest of my extensions
+// user_pref("browser.policies.runOncePerModification.extensionsInstall", "[\"https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi\"]");
+// user_pref("browser.urlbar.placeholderName", "StartPage");
+// user_pref("browser.urlbar.placeholderName.private", "StartPage");
+
+// ==== Start of Lepton settings ==================================================================
+
 // ** Theme Default Options ****************************************************
 // userchrome.css usercontent.css activate
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);

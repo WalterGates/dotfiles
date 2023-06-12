@@ -2,10 +2,8 @@
 *
 
 # Allow only user customization files
-!.gitignore
 !profiles.ini
+!installs.ini
 !librewolf.overrides.cfg
-!custom_profile/
 !custom_profile/user.js
-!custom_profile/prefs.js
 !custom_profile/chrome/**
