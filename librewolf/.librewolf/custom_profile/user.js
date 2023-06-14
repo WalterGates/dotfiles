@@ -4,9 +4,8 @@ user_pref("browser.display.use_document_fonts", 0);
 user_pref("browser.download.autohideButton", true);
 user_pref("browser.formfill.enable", true);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
-user_pref("browser.search.hiddenOneOffs", "DuckDuckGo,DuckDuckGo Lite,MetaGer,SearXNG - searx.be,Wikipedia (en)");
-user_pref("browser.search.suggest.enabled", true);
-user_pref("browser.search.suggest.enabled.private", true);
+user_pref("browser.search.hiddenOneOffs", "DuckDuckGo,DuckDuckGo Lite,MetaGer,SearXNG - searx.be,Wikipedia (en),YouTube,Brave");
+user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"ublock0_raymondhill_net-browser-action\",\"_55f61747-c3d3-4425-97f9-dfc19a0be23c_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"save-to-pocket-button\",\"downloads-button\",\"simple-tab-groups_drive4ik-browser-action\",\"addon_darkreader_org-browser-action\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"developer-button\",\"_55f61747-c3d3-4425-97f9-dfc19a0be23c_-browser-action\",\"addon_darkreader_org-browser-action\",\"simple-tab-groups_drive4ik-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":4}");
 user_pref("browser.uidensity", 1);
@@ -47,9 +46,13 @@ user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
 
 // TODO: add the rest of my extensions
 // user_pref("browser.policies.runOncePerModification.extensionsInstall", "[\"https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi\"]");
+
+// NOTE: I can't find a way to set these
+// TODO: Add bang searches
 // TODO: Set `StartPage` as default search engine, idealy with custom url
 // user_pref("browser.urlbar.placeholderName", "StartPage");
 // user_pref("browser.urlbar.placeholderName.private", "StartPage");
+// user_pref("browser.policies.runOncePerModification.setDefaultSearchEngine", "StartPage");
 
 // ==== Start of Lepton settings ==================================================================
 
